@@ -33,6 +33,7 @@ function showText() {
   for(var i=localStorage.length - 1; i >= 0; i--) {
     key = localStorage.key(i);
     value = localStorage.getItem(key);
+    value = escapeText(value);
     html.push("<li>" + value + "</li>");
   }
 
@@ -42,14 +43,14 @@ function showText() {
 
 // 文字をエスケープする
 function escapeText(text) {
-  return $("#newitem").html("<li>" + text + "</li>");
+  return jQuery('<div>').text(text).html();
 }
 
 // 入力チェックを行う
 function checkText(text) {
   // 文字数が0または20以上は不可
-  if (0 === text.length || 20 < text.length) {
-    alert("文字数は1〜20字にしてください");
+  if (0 === text.length || 30 < text.length) {
+    alert("文字数は1〜30字にしてください");
     return false;
   }
 
